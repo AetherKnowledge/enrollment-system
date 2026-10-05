@@ -5,9 +5,9 @@ import { user } from '#lib/server/db/schema.js';
 import { eq } from 'drizzle-orm';
 
 export async function load({ locals }) {
-	validateUser(locals, [Role.ADMIN]);
+	validateUser(locals, [Role.ADMIN, Role.REGISTRAR]);
 
-	const users = await db.select().from(user).where(eq(user.role, Role.REGISTRAR));
+	const users = await db.select().from(user).where(eq(user.role, Role.STUDENT));
 
 	return {
 		users
